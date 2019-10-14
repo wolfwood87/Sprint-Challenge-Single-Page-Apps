@@ -2,7 +2,7 @@ import React from "react";
 import CharacterList from './CharacterList.js';
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  CardTitle, CardSubtitle
 } from 'reactstrap';
 
 export default function CharacterCard(props) {
