@@ -1,30 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CharacterCard from './CharacterCard.js';
+import { Route, Redirect } from 'react-router-dom';
+import Character from './Character.js';
 
-export default function SearchForm() {
-  const [char, setChar] = useState({name: ''});
+export default function SearchForm(props) {
+  const [char, setChar] = useState(props.char);
+  const [sub, setSub] = useState(props.sub);
 
   const changeChar = e => {
-    setChar({ ...char, [e.target.name]:e.target.value});
+    setSub([ ...props.char, e.target.value]);
+    setChar('');
+    console.log(props.char);
   };
 
-  const charSubmit = e => {
-    e.preventDefault();
-    return (<CharacterCard name={char} />)
-  }
+  useEffect(() => {}, [char])
+
+  props.callBack(char, sub);
   return (
-    <form onSubmit={charSubmit} className="search-form">
+    <form  className="search-form">
       <div>
-        <label htmlFor='name' placeholder="name"></label>
+        <label htmlFor='name' ></label>
         <input
           id="name"
           name="name"
           value={char.name}
           type="text"
+          placeholder="Name"
           onChange={changeChar}
           />
-          <button type="submit">Search</button>
       </div>
+      <div>
+    </div>
     </form>
+
+    
   );
 }

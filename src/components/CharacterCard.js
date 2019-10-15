@@ -4,6 +4,7 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle
 } from 'reactstrap';
+import SearchForm from './SearchForm.js';
 
 export default function CharacterCard(props) {
   return (
