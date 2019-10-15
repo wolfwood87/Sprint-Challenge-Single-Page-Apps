@@ -13,7 +13,9 @@ export default function SearchForm(props) {
     console.log(props.char);
   };
 
-  useEffect(() => {}, [char])
+ 
+
+  useEffect(() => {}, [char, sub])
 
   props.callBack(char, sub);
   return (
@@ -27,6 +29,7 @@ export default function SearchForm(props) {
           type="text"
           placeholder="Name"
           onChange={changeChar}
+          
           />
       </div>
       <div>

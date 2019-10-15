@@ -7,7 +7,7 @@ import SearchForm from './SearchForm.js';
 export default function CharacterList(props) {
   // TODO: Add useState to track data from useEffect
   const [chars, setChars] = useState([]);
-  
+  const [oldChars, setOldChars] = useState([]);
   console.log(props.char);
   console.log(props.sub);
   
@@ -17,7 +17,7 @@ export default function CharacterList(props) {
         .then(res => {
           console.log(res);
           setChars(res.data.results);
-          
+          setOldChars(res.data.results);
         })
         .catch(err => {
           console.log(err);
@@ -27,13 +27,12 @@ export default function CharacterList(props) {
   }, []);
   console.log(chars);
   useEffect(() => {
-    
     const newChar = chars.filter((item) => {
       return (item.name.toLowerCase().includes(props.sub))
     })
-    setChars(newChar);
     console.log(newChar);
-    }, [props.sub]);
+    props.sub==""? setChars(oldChars): setChars(newChar)
+    }, [props.sub, props.char]);
   console.log(chars);
   return (
     <section className="character-list">
